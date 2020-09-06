@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:orientation="vertical"
+    tools:context=".mainpage">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginTop="-10dp"
+        app:cardBackgroundColor="#FFA000"
+        app:cardCornerRadius="10dp">
+
+        <TextView
+            android:id="@+id/username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/roboto_black"
+            android:text="hey gd!"
+            android:textColor="#FFFFFF"
+            android:textSize="34sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="63dp"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="cursive"
+            android:text="lets make a note"
+            android:textColor="#FFFFFF"
+            android:textSize="22sp" />
+
+        <ImageView
+            android:id="@+id/userphoto"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginLeft="310dp"
+            android:layout_marginTop="15dp" />
+
+
+    </androidx.cardview.widget.CardView>
+
+    <Button
+        android:id="@+id/signout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="signout"
+        android:text="sign out" />
+
+<androidx.recyclerview.widget.RecyclerView
+    android:layout_marginTop="100dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/noterecycle"/>
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>
