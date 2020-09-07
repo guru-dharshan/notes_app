@@ -53,6 +53,12 @@
         android:layout_height="wrap_content"
         android:onClick="signout"
         android:text="sign out" />
+    <Button
+        android:id="@+id/makenote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="create"
+        android:text="create" />
 
 <androidx.recyclerview.widget.RecyclerView
     android:layout_marginTop="100dp"
