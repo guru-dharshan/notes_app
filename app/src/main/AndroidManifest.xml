@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".notemake"></activity>
+        <activity android:name=".editnote"></activity>
+        <activity android:name=".notemake" />
         <activity android:name=".mainpage" />
         <activity android:name=".MainActivity">
             <intent-filter>

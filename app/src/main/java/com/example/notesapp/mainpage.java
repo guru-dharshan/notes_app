@@ -76,7 +76,7 @@ public class mainpage extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        firestore.collection("Note Book").document(acct.getId()).collection("childnotes").addSnapshotListener(new EventListener<QuerySnapshot>() {
+        firestore.collection("Note Book").document(acct.getId()).collection("childnotes").addSnapshotListener(this,new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
                 if (error != null) {
@@ -91,6 +91,9 @@ public class mainpage extends AppCompatActivity {
                 }
                 noteadapter noteadapter = new noteadapter(mainpage.this,notearray);
                 recyclerView.setAdapter(noteadapter);
+                LinearLayoutManager horizontalLayoutManagaer
+                        = new LinearLayoutManager(mainpage.this, LinearLayoutManager.VERTICAL, false);
+                recyclerView.setLayoutManager(horizontalLayoutManagaer);
 
             }
 
@@ -107,9 +110,9 @@ public class mainpage extends AppCompatActivity {
         }
     }
     public void create(View view){
-       // Intent intent = new Intent(this,notemake.class);
-      //  startActivity(intent);
-        firestore.collection("Note Book").document(acct.getId()).collection("childnotes").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+         Intent intent = new Intent(this,notemake.class);
+        startActivity(intent);
+       /** firestore.collection("Note Book").document(acct.getId()).collection("childnotes").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
 
@@ -124,7 +127,7 @@ public class mainpage extends AppCompatActivity {
                         = new LinearLayoutManager(mainpage.this, LinearLayoutManager.VERTICAL, false);
                 recyclerView.setLayoutManager(horizontalLayoutManagaer);
             }
-        });
+        });**/
 
     }
     private void signOut() {

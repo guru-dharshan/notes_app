@@ -7,8 +7,9 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardBackgroundColor="#FFE082"
+        app:cardBackgroundColor="#FFFFFF"
         app:cardCornerRadius="15dp"
+        android:id="@+id/notecard"
         android:layout_marginBottom="10dp">
 
         <TextView
@@ -16,10 +17,10 @@
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="10dp"
             android:fontFamily="@font/roboto_black"
             android:text="title"
-            android:textColor="#000000"
+            android:textColor="#001A31"
             android:textSize="24sp"
             android:textStyle="bold" />
 
@@ -28,10 +29,10 @@
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="35dp"
+            android:layout_marginTop="40dp"
             android:fontFamily="@font/roboto_medium"
             android:text="description"
-            android:textColor="#323030"
+            android:textColor="#001A31"
             android:textSize="18sp"
             android:textStyle="italic"
             android:layout_marginBottom="10dp"/>

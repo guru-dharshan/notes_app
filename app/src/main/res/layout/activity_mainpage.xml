@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
+    android:background="#ECECEC"
     android:orientation="vertical"
     tools:context=".mainpage">
 
@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:layout_marginTop="-10dp"
-        app:cardBackgroundColor="#FFA000"
+        app:cardBackgroundColor="#001A31"
         app:cardCornerRadius="10dp">
 
         <TextView
@@ -60,11 +60,37 @@
         android:onClick="create"
         android:text="create" />
 
-<androidx.recyclerview.widget.RecyclerView
-    android:layout_marginTop="100dp"
+<androidx.cardview.widget.CardView
+    android:layout_width="match_parent"
+    android:layout_height="40dp"
+    app:cardCornerRadius="20dp"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp">
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginTop="5dp"
+        android:textSize="18sp"
+        android:textColor="#ffffff"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="50dp"
+        android:id="@+id/searchtext"/>
+
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/ic_baseline_search_24"
+        android:layout_marginLeft="345dp"
+        android:layout_marginTop="5dp"
+        android:id="@+id/search"/>
+</androidx.cardview.widget.CardView>
+
+    <androidx.recyclerview.widget.RecyclerView
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/noterecycle"/>
+    android:id="@+id/noterecycle">
+
+</androidx.recyclerview.widget.RecyclerView>
 
 
 </androidx.appcompat.widget.LinearLayoutCompat>
