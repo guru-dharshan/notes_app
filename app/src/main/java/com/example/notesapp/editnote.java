@@ -38,12 +38,22 @@ public class editnote extends AppCompatActivity {
     public void savenote(View view){
         firestore.collection("Note Book").document(acct.getId()).collection("childnotes").document(id).update("title",notetitle.getText().toString());
         firestore.collection("Note Book").document(acct.getId()).collection("childnotes").document(id).update("desc",notedesc.getText().toString());
+        backbutton();
     }
     public void deletenote(View view){
         firestore.collection("Note Book").document(acct.getId()).collection("childnotes").document(id).delete();
+        backbutton();;
     }
 
     public void sharenote(View view){
-
+        backbutton();
+    }
+    public void backtohomepage(View view){
+       backbutton();
+    }
+    public void backbutton(){
+        Intent intent=new Intent(this,mainpage.class);
+        startActivity(intent);
+        finish();
     }
 }

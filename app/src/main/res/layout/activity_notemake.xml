@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-
-<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
     android:orientation="vertical"
     android:background="#ECECEC"
     tools:context=".notemake">
@@ -14,9 +12,17 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:layout_marginTop="-10dp"
         app:cardBackgroundColor="#001A31"
-        app:cardCornerRadius="10dp">
+        app:cardCornerRadius="1dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_baseline_arrow_back_24"
+            android:layout_marginTop="20dp"
+            android:onClick="backtohomepage"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -24,16 +30,22 @@
             android:layout_marginLeft="60dp"
             android:layout_marginTop="20dp"
             android:text="NOTE"
-            android:textColor="#FAFAFA"
+            android:textColor="#FFFFFF"
             android:textSize="36sp" />
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="550dp"
-        android:layout_marginTop="20dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginBottom="5dp"
+
         app:cardBackgroundColor="#FFFFFF"
-        app:cardCornerRadius="20dp">
+        app:cardCornerRadius="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/cardView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <EditText
             android:id="@+id/title"
@@ -53,26 +65,35 @@
             android:singleLine="false" />
     </androidx.cardview.widget.CardView>
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginBottom="10dp"
-        app:cardBackgroundColor="#53EA59"
-        android:onClick="save"
-        app:cardCornerRadius="10dp">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="save"
-            android:textColor="#FFFFFF"
-            android:textSize="50sp" />
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="match_parent"
+
+        android:layout_height="80dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="5dp"
+        app:cardBackgroundColor="#6E8BA5"
+        app:cardCornerRadius="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+       <TextView
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:text="save"
+           android:textSize="54sp"
+           android:gravity="center"
+           android:textColor="#FFFFFF"
+
+           android:onClick="save"/>
 
     </androidx.cardview.widget.CardView>
 
+</androidx.constraintlayout.widget.ConstraintLayout>
 
-</androidx.appcompat.widget.LinearLayoutCompat>
+

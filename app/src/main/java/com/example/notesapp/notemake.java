@@ -2,6 +2,7 @@ package com.example.notesapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -29,5 +30,14 @@ public class notemake extends AppCompatActivity {
         note note = new note(title.getText().toString(),description.getText().toString());
 
         firestore.collection("Note Book").document(acct.getId()).collection("childnotes").add(note);
+        backbutton();
+    }
+    public void backtohomepage(View view){
+        backbutton();
+    }
+    public void backbutton(){
+        Intent intent=new Intent(this,mainpage.class);
+        startActivity(intent);
+        finish();
     }
 }

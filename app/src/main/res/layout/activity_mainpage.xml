@@ -24,7 +24,9 @@
             android:fontFamily="@font/roboto_black"
             android:text="hey gd!"
             android:textColor="#FFFFFF"
-            android:textSize="34sp" />
+
+            android:textSize="30sp"
+            android:textStyle="normal" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -39,41 +41,34 @@
 
         <ImageView
             android:id="@+id/userphoto"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:layout_marginLeft="310dp"
-            android:layout_marginTop="15dp" />
+            android:layout_marginTop="25dp"
+            android:onClick="setting"/>
 
 
     </androidx.cardview.widget.CardView>
 
-    <Button
-        android:id="@+id/signout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="signout"
-        android:text="sign out" />
-    <Button
-        android:id="@+id/makenote"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="create"
-        android:text="create" />
+
+
 
 <androidx.cardview.widget.CardView
     android:layout_width="match_parent"
     android:layout_height="40dp"
     app:cardCornerRadius="20dp"
     android:layout_marginLeft="10dp"
+    android:layout_marginTop="10dp"
     android:layout_marginRight="10dp">
     <EditText
         android:layout_width="match_parent"
         android:layout_height="30dp"
         android:layout_marginTop="5dp"
         android:textSize="18sp"
-        android:textColor="#ffffff"
+        android:textColor="#151515"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="50dp"
+        android:background="@null"
         android:id="@+id/searchtext"/>
 
     <ImageView
@@ -82,15 +77,66 @@
         android:src="@drawable/ic_baseline_search_24"
         android:layout_marginLeft="345dp"
         android:layout_marginTop="5dp"
+        android:onClick="search"
         android:id="@+id/search"/>
 </androidx.cardview.widget.CardView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ALL"
+            android:textSize="24sp"
+            android:textColor="#001A31"
+            android:onClick="showall"
+            android:layout_marginLeft="55dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="sort(a-z)"
+            android:textSize="24sp"
+            android:textColor="#001A31"
+            android:onClick="showassc"
+            android:layout_marginLeft="40dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="sort(z-a)"
+            android:textSize="24sp"
+            android:textColor="#001A31"
+            android:onClick="showdesc"
+            android:layout_marginLeft="40dp"/>
 
-    <androidx.recyclerview.widget.RecyclerView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/noterecycle">
+    </LinearLayout>
 
-</androidx.recyclerview.widget.RecyclerView>
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        tools:context=".MainActivity">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/noterecycle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|right"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/ic_baseline_add_24"
+            android:onClick="create"
+            app:rippleColor="#001A31"
+            app:fabSize="normal" />
+
+
+    </FrameLayout>
 
 
 </androidx.appcompat.widget.LinearLayoutCompat>

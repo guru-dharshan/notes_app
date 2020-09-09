@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,11 +21,13 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
@@ -37,6 +40,7 @@ public class mainpage extends AppCompatActivity {
     GoogleSignInClient mGoogleSignInClient;
     GoogleSignInAccount acct;
     RecyclerView recyclerView;
+    EditText searchtext;
     public static List<note> notearray;
     FirebaseFirestore firestore=FirebaseFirestore.getInstance();
     @Override
@@ -44,6 +48,7 @@ public class mainpage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mainpage);
         recyclerView=findViewById(R.id.noterecycle);
+        searchtext=findViewById(R.id.searchtext);
 
         username=findViewById(R.id.username);
         usephoto=findViewById(R.id.userphoto);
@@ -100,15 +105,7 @@ public class mainpage extends AppCompatActivity {
         });
     }
 
-    public void signout(View v){
-        switch (v.getId()) {
 
-            case R.id.signout:
-                signOut();
-                break;
-
-        }
-    }
     public void create(View view){
          Intent intent = new Intent(this,notemake.class);
         startActivity(intent);
@@ -130,15 +127,101 @@ public class mainpage extends AppCompatActivity {
         });**/
 
     }
-    private void signOut() {
-        mGoogleSignInClient.signOut()
-                .addOnCompleteListener(this, new OnCompleteListener<Void>() {
+
+    public void search(View view){
+        firestore.collection("Note Book").document(acct.getId()).collection("childnotes").whereEqualTo("title",searchtext.getText().toString())
+                .get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                notearray = new ArrayList<>();
+                for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
+                    note note = documentSnapshot.toObject(note.class);
+                    note.setDocumentId(documentSnapshot.getId());
+                    notearray.add(note);
+                }
+                noteadapter noteadapter = new noteadapter(mainpage.this,notearray);
+                recyclerView.setAdapter(noteadapter);
+                LinearLayoutManager horizontalLayoutManagaer
+                        = new LinearLayoutManager(mainpage.this, LinearLayoutManager.VERTICAL, false);
+                recyclerView.setLayoutManager(horizontalLayoutManagaer);
+
+            }
+
+        })
+                .addOnFailureListener(new OnFailureListener() {
                     @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        Toast.makeText(mainpage.this, "logged out", Toast.LENGTH_SHORT).show();
-                        finish();
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(mainpage.this, "no notes found!", Toast.LENGTH_SHORT).show();
                     }
+                });
+
+    }
+
+    public void showall(View view){
+        firestore.collection("Note Book").document(acct.getId()).collection("childnotes").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                notearray = new ArrayList<>();
+                for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
+                    note note = documentSnapshot.toObject(note.class);
+                    note.setDocumentId(documentSnapshot.getId());
+                    notearray.add(note);
+                }
+                noteadapter noteadapter = new noteadapter(mainpage.this,notearray);
+                recyclerView.setAdapter(noteadapter);
+                LinearLayoutManager horizontalLayoutManagaer
+                        = new LinearLayoutManager(mainpage.this, LinearLayoutManager.VERTICAL, false);
+                recyclerView.setLayoutManager(horizontalLayoutManagaer);
+            }
+        });
+    }
+
+    public void showassc(View view){
+        firestore.collection("Note Book").document(acct.getId()).collection("childnotes").orderBy("title", Query.Direction.ASCENDING).get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        notearray = new ArrayList<>();
+                        for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
+                            note note = documentSnapshot.toObject(note.class);
+                            note.setDocumentId(documentSnapshot.getId());
+                            notearray.add(note);
+                        }
+                        noteadapter noteadapter = new noteadapter(mainpage.this,notearray);
+                        recyclerView.setAdapter(noteadapter);
+                        LinearLayoutManager horizontalLayoutManagaer
+                                = new LinearLayoutManager(mainpage.this, LinearLayoutManager.VERTICAL, false);
+                        recyclerView.setLayoutManager(horizontalLayoutManagaer);
+
+                    }
+
+                });
+    }
+    public void showdesc(View view){
+        firestore.collection("Note Book").document(acct.getId()).collection("childnotes").orderBy("title", Query.Direction.DESCENDING).get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        notearray = new ArrayList<>();
+                        for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
+                            note note = documentSnapshot.toObject(note.class);
+                            note.setDocumentId(documentSnapshot.getId());
+                            notearray.add(note);
+                        }
+                        noteadapter noteadapter = new noteadapter(mainpage.this,notearray);
+                        recyclerView.setAdapter(noteadapter);
+                        LinearLayoutManager horizontalLayoutManagaer
+                                = new LinearLayoutManager(mainpage.this, LinearLayoutManager.VERTICAL, false);
+                        recyclerView.setLayoutManager(horizontalLayoutManagaer);
+
+                    }
+
                 });
     }
 
+    public void setting(View view){
+        Intent intent=new Intent(this,setting.class);
+        startActivity(intent);
+        finish();
+    }
 }
