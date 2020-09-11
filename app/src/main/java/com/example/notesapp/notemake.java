@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -30,6 +31,7 @@ public class notemake extends AppCompatActivity {
         note note = new note(title.getText().toString(),description.getText().toString());
 
         firestore.collection("Note Book").document(acct.getId()).collection("childnotes").add(note);
+        Toast.makeText(this, "saved", Toast.LENGTH_SHORT).show();
         backbutton();
     }
     public void backtohomepage(View view){

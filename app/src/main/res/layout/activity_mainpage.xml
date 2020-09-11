@@ -21,7 +21,6 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="20dp"
-            android:fontFamily="@font/roboto_black"
             android:text="hey gd!"
             android:textColor="#FFFFFF"
 
@@ -58,18 +57,20 @@
     android:layout_height="40dp"
     app:cardCornerRadius="20dp"
     android:layout_marginLeft="10dp"
+    app:cardBackgroundColor="#FFFFFF"
     android:layout_marginTop="10dp"
     android:layout_marginRight="10dp">
+
     <EditText
-        android:layout_width="match_parent"
+        android:id="@+id/searchtext"
+        android:layout_width="337dp"
         android:layout_height="30dp"
-        android:layout_marginTop="5dp"
-        android:textSize="18sp"
-        android:textColor="#151515"
         android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
         android:layout_marginRight="50dp"
         android:background="@null"
-        android:id="@+id/searchtext"/>
+        android:textColor="#151515"
+        android:textSize="18sp" />
 
     <ImageView
         android:layout_width="30dp"
@@ -132,7 +133,8 @@
             android:layout_marginRight="10dp"
             android:src="@drawable/ic_baseline_add_24"
             android:onClick="create"
-            app:rippleColor="#001A31"
+            android:backgroundTint="#001A31"
+            app:rippleColor="#8BC34A"
             app:fabSize="normal" />
 
 

@@ -2,11 +2,16 @@ package com.example.notesapp;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -24,6 +29,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
@@ -33,6 +39,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class mainpage extends AppCompatActivity {
     TextView username;
@@ -41,6 +48,9 @@ public class mainpage extends AppCompatActivity {
     GoogleSignInAccount acct;
     RecyclerView recyclerView;
     EditText searchtext;
+
+
+
     public static List<note> notearray;
     FirebaseFirestore firestore=FirebaseFirestore.getInstance();
     @Override
@@ -49,6 +59,11 @@ public class mainpage extends AppCompatActivity {
         setContentView(R.layout.activity_mainpage);
         recyclerView=findViewById(R.id.noterecycle);
         searchtext=findViewById(R.id.searchtext);
+
+        //testing
+        Intent intent= new Intent(this,recipiesuggestion.class);
+        startActivity(intent);
+
 
         username=findViewById(R.id.username);
         usephoto=findViewById(R.id.userphoto);
@@ -66,7 +81,7 @@ public class mainpage extends AppCompatActivity {
             String personId = acct.getId();
             Uri personPhoto = acct.getPhotoUrl();
 
-          username.setText("hi "+personName+"!");
+          username.setText("Hi "+personName+"!");
             Glide.with(this)
                     .load(String.valueOf(username))
                     .override(100, 100)
@@ -74,6 +89,12 @@ public class mainpage extends AppCompatActivity {
                     .into(usephoto);
 
 
+        }
+        int check=getIntent().getIntExtra("check",0);
+        if(check==1){
+            String title=getIntent().getStringExtra("deletetitle");
+            String desc=getIntent().getStringExtra("deletedesc");
+            undo(title,desc);
         }
 
     }
@@ -126,6 +147,7 @@ public class mainpage extends AppCompatActivity {
             }
         });**/
 
+
     }
 
     public void search(View view){
@@ -156,6 +178,7 @@ public class mainpage extends AppCompatActivity {
                 });
 
     }
+
 
     public void showall(View view){
         firestore.collection("Note Book").document(acct.getId()).collection("childnotes").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
@@ -223,5 +246,18 @@ public class mainpage extends AppCompatActivity {
         Intent intent=new Intent(this,setting.class);
         startActivity(intent);
         finish();
+    }
+
+
+    protected void undo(final String title, final String desc ) {
+        Snackbar snackBar = Snackbar .make(findViewById(android.R.id.content),"Note is Removed!", Snackbar.LENGTH_LONG) .setAction("undo", new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                note note = new note(title,desc);
+                firestore.collection("Note Book").document(acct.getId()).collection("childnotes").add(note);
+            }
+        });
+        snackBar.setActionTextColor(Color.RED);
+        snackBar.show();
     }
 }

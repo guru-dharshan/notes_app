@@ -11,33 +11,34 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        app:cardBackgroundColor="#001A31"
+        android:layout_height="50dp"
+        app:cardBackgroundColor="#CDCDCD"
         app:cardCornerRadius="1dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
         <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="35dp"
+            android:layout_height="30dp"
             android:src="@drawable/ic_baseline_arrow_back_24"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:onClick="backtohomepage"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginLeft="60dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="11.5dp"
             android:text="NOTE"
-            android:textColor="#FFFFFF"
-            android:textSize="36sp" />
+
+            android:textColor="#040404"
+            android:textSize="20sp" />
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="70dp"
         android:layout_marginBottom="5dp"
 
         app:cardBackgroundColor="#FFFFFF"
@@ -51,6 +52,8 @@
             android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="80dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
             android:hint="title" />
 
         <EditText
@@ -61,6 +64,7 @@
             android:layout_marginTop="100dp"
             android:layout_marginRight="5dp"
             android:gravity="top"
+            android:background="@null"
             android:hint="description"
             android:singleLine="false" />
     </androidx.cardview.widget.CardView>
@@ -70,13 +74,13 @@
         android:id="@+id/cardView"
         android:layout_width="match_parent"
 
-        android:layout_height="80dp"
+        android:layout_height="50dp"
         android:layout_marginStart="5dp"
         android:layout_marginLeft="5dp"
         android:layout_marginEnd="5dp"
         android:layout_marginRight="5dp"
         android:layout_marginBottom="5dp"
-        app:cardBackgroundColor="#6E8BA5"
+        app:cardBackgroundColor="#8FBA5D"
         app:cardCornerRadius="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -86,7 +90,7 @@
            android:layout_width="match_parent"
            android:layout_height="match_parent"
            android:text="save"
-           android:textSize="54sp"
+           android:textSize="34sp"
            android:gravity="center"
            android:textColor="#FFFFFF"
 
