@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:cardBackgroundColor="#DBDDE8"
+        app:cardCornerRadius="20dp"
+        android:layout_marginTop="10dp"
         android:id="@+id/recipiecard">
 
         <ImageView
@@ -20,7 +24,9 @@
             android:layout_height="wrap_content"
             android:text="title"
             android:layout_marginTop="180dp"
+            android:textColor="#ffffff"
             android:textSize="24dp"
+            android:gravity="center"
             android:textStyle="bold"
             android:layout_marginBottom="10dp"
             android:id="@+id/recipietitle"/>

@@ -59,12 +59,6 @@ public class mainpage extends AppCompatActivity {
         setContentView(R.layout.activity_mainpage);
         recyclerView=findViewById(R.id.noterecycle);
         searchtext=findViewById(R.id.searchtext);
-
-        //testing
-        Intent intent= new Intent(this,recipiesuggestion.class);
-        startActivity(intent);
-
-
         username=findViewById(R.id.username);
         usephoto=findViewById(R.id.userphoto);
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -84,8 +78,6 @@ public class mainpage extends AppCompatActivity {
           username.setText("Hi "+personName+"!");
             Glide.with(this)
                     .load(String.valueOf(username))
-                    .override(100, 100)
-                    .error(R.drawable.ic_launcher_background)
                     .into(usephoto);
 
 

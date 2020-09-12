@@ -20,12 +20,14 @@ import java.util.Map;
 public class editnote extends AppCompatActivity {
      String id,title,desc,deletetitle,deletedesc;
      EditText notetitle, notedesc;
+     TextView suggestiontext;
     FirebaseFirestore firestore=FirebaseFirestore.getInstance();
     GoogleSignInAccount acct;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editnote);
+        suggestiontext=findViewById(R.id.suggestiontext);
         Intent intent = getIntent();
         title=intent.getExtras().getString("title");
         desc=intent.getExtras().getString("desc");
@@ -36,6 +38,14 @@ public class editnote extends AppCompatActivity {
 
         notetitle.setText(title);
         notedesc.setText(desc);
+        if(title.contains("recipe")){
+            suggestiontext.setVisibility(View.VISIBLE);
+        }
+    }
+    public void suggestion(View view){
+        Intent intent = new Intent(editnote.this,recipiesuggestion.class);
+        intent.putExtra("recipe",title);
+        startActivity(intent);
     }
 
     public void savenote(View view){
